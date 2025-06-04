@@ -30,15 +30,26 @@ class FirebaseAuthRepository implements AuthRepository {
           await _firebaseAuth.signInWithCredential(credential);
 
       if (userCredential.additionalUserInfo?.isNewUser ?? false) {
+        authState.value = true;
         Routefly.navigate(routePaths.updateUser);
         return true;
       }
 
+      authState.value = true;
       Routefly.navigate(routePaths.home);
       return true;
     } catch (e) {
       throw Exception("Erro ao atualizar usuário");
     }
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+    await _googleSignIn.signOut();
+    authState.value = false;
+    userState.value = null;
+    Routefly.navigate(routePaths.login);
   }
 
    @override

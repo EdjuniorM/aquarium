@@ -5,4 +5,5 @@ abstract class AuthRepository {
   Future<bool> signInWithGoogle();
   Future<void> createDataUser(UpdateUserModel user);
   Future<UserModel> getDataUser();
+  Future<void> signOut();
 }

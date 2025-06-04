@@ -40,7 +40,8 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Text('Você está logado!'),
                       ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          await signOut();
                         },
                         child: const Text('Logout'),
                       ),

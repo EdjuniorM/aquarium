@@ -20,3 +20,8 @@ Future<UserModel> getDataUser() async {
   final repository = injector.get<AuthRepository>();
   return await repository.getDataUser();
 }
+
+Future<void> signOut() async {
+  final repository = injector.get<AuthRepository>();
+  await repository.signOut();
+}
